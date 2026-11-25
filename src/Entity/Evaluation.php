@@ -40,6 +40,12 @@ class Evaluation
     #[ORM\OneToMany(mappedBy: 'evaluation', targetEntity: Grade::class, orphanRemoval: true)]
     private Collection $grades;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Evaluation = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Categorie = null;
+
     public function __construct()
     {
         $this->grades = new ArrayCollection();
@@ -160,5 +166,29 @@ class Evaluation
             }
         }
         return null;
+    }
+
+    public function getEvaluation(): ?string
+    {
+        return $this->Evaluation;
+    }
+
+    public function setEvaluation(string $Evaluation): static
+    {
+        $this->Evaluation = $Evaluation;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(string $Categorie): static
+    {
+        $this->Categorie = $Categorie;
+
+        return $this;
     }
 }
