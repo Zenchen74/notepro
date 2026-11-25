@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\PasswordStrength;
 
@@ -39,6 +38,10 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Saisissez un mot de passe',
+                    ]),
+                    new PasswordStrength([
+                        'minScore' => PasswordStrength::STRENGTH_STRONG,
+                        'message' => 'Le mot de passe n\'est pas assez complexe.',
                     ]),
                 ],
             ])
